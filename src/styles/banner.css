@@ -1,0 +1,92 @@
+.banner .description {
+    /* text-align: center; */
+    position: relative; /* Position relative pour se placer au-dessus de la superposition */
+    z-index: 2; /* Assurez-vous que le texte est au-dessus de la superposition */
+    color: #fff;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    /* -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #000; */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 142.6%; /* 68.448px */
+  }
+   
+  .banner .cover {
+    position: relative;
+    background-image: url("../assets/img/bg-home.png"); /* Chemin correct vers l'image */
+    background-size: cover;
+    background-position: center;
+    max-width: 1240px;
+    height: 223px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 31px;
+    padding-right: 31px;
+  }
+  
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6); /* Superposition sombre avec opacité */
+    border-radius: 25px; /* Même bordure arrondie que l'élément parent */
+    z-index: 1; /* Assurez-vous que la superposition est au-dessus de l'image de fond */
+  }
+  .cover-about {
+    position: relative;
+    background-image: url("../assets/img/bg-about.png"); /* Chemin correct vers l'image */
+    background-size: cover;
+    background-position: center;
+    max-width: 1240px;
+    height: 223px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+  }
+  
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6); /* Superposition sombre avec opacité */
+    border-radius: 25px; /* Même bordure arrondie que l'élément parent */
+    z-index: 1; /* Assurez-vous que la superposition est au-dessus de l'image de fond */
+  } 
+
+  .cover-about::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.3;
+    background: #000;
+    mix-blend-mode: darken;
+    border-radius: 25px;
+  }
+  
+  @media screen and (max-width: 768px ) {
+ 
+    .banner .cover {
+      justify-content: flex-start;
+      height: auto;
+      padding: 31px 94px 32px 16px;
+    }
+    .banner .cover-about{
+      height: 111px;
+    }
+
+  }

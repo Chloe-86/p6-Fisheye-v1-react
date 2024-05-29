@@ -1,0 +1,41 @@
+.template .arrow-right,
+.template .arrow-left {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.template .arrow-left {
+  right: 23px;
+}
+.template .arrow-right {
+  left: 23px;
+}
+.template img.cover {
+  height: 415px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 25px;
+}
+.template .arrow-right img,
+.template .arrow-left img {
+  object-fit: cover;
+  max-width: 47px;
+  max-height: 80px;
+}
+.index {
+  position: absolute;
+  bottom: 10px;
+  color: white;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 142.6%;
+}
+@media screen and (max-width: 768px){
+  .template img.cover {
+    height: 255px!important;
+  }
+}

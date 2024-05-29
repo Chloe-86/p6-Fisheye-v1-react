@@ -1,0 +1,11 @@
+.stars{
+
+  text-align: end;
+  padding-top: 21px;
+}
+@media screen and (max-width: 768px){
+  .stars span img{
+    width: 13px !important;
+    height: 13px !important;
+  } 
+}

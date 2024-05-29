@@ -1,0 +1,15 @@
+
+main {
+  padding-left: 100px;
+  padding-right: 100px;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+/* max tablet */
+@media screen and (max-width: 992px) {
+  main{
+    padding:20px ;
+  }
+  
+}
