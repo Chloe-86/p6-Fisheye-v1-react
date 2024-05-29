@@ -1,13 +1,13 @@
 import React from "react";
 import List from "./List";
-import Banner from "./Banner";
+// import Banner from "./Banner";
 
 
 const Home = () => {
   return (
     <div>
-      <Banner />
-      <List />
+     {/* <Banner /> */}
+      <List /> 
     </div>
   );
 };

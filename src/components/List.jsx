@@ -1,27 +1,32 @@
 import React from 'react';
-import jsonData from '../data/data.json';
-import { Link } from 'react-router-dom'; 
-import '../styles/list.css'
-import '../styles/banner.css'
+import PhotographerCard from '../Templates/PhotographerCard';
+import jsonData from "../data/photographers.json";
+import "../styles/main.css";
 
-const List = () => {
+const PhotographersList = () => {
+  const photographers = jsonData.photographers;
+
+  if (!Array.isArray(photographers)) {
+    console.error(
+      "Le fichier JSON importé n'est pas un tableau.",
+      photographers
+    );
+    return <div>Erreur: Les données ne sont pas valides.</div>;
+  }
+
   return (
-    <div>
-      <ul className="grid-container">
-        {jsonData.map((item, index) => (
-          <li className='grid-item' key={index}>
-            <article className="card">
-              <Link className="wrapper" to={`../pages/${item.id}`}>
-                <img src={item.cover} alt={item.title} />
-                <p>{item.title}</p>
-              </Link>
-            </article>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul className="grid-container">
+      {photographers.map((photographer) => (
+        <PhotographerCard
+          key={photographer.id}
+          name={photographer.name}
+          location={`${photographer.city}, ${photographer.country}`}
+          price={`${photographer.price}€/jour`}
+          image={require(`../assets/img/photographers/${photographer.portrait}`)}
+        />
+      ))}
+    </ul>
   );
-}
+};
 
-export default List;
-
+export default PhotographersList;
