@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './components/Header';
 // import Footer from './components/Footer';
-import RouterComponent from './router/Router';
+import Router from './router/Router';
 import './app.css'
 import './styles/main.css'
 
@@ -10,7 +10,7 @@ const App = () => {
     <>
       <Header />
       <main>
-      <RouterComponent />
+      <Router />
       </main>
       {/* <Footer /> */}
     </>

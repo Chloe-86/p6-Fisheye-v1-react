@@ -1,41 +1,31 @@
 import React from "react";
-// import Info from "../components/Info";
 import { useParams } from "react-router-dom";
-// import jsonData from "../data/data.json";
-import jsonData from "../data/photographers.json";
-// import SlideShow from "../components/SlideShow"
+import data from "../data/data.json";
+import PhotographerCard from "../Templates/PhotographerCard";
+import "../styles/list.css";
+import Banner from "../components/Banner.jsx";
+import MediasDisplay from "../components/MediasDisplay.jsx";
 
-
-// const Template = () => {
-//   // Récupérer l'ID à partir des paramètres de l'URL
-//   const { id } = useParams();
-
-//   // Trouver l'élément correspondant dans le tableau de données en fonction de l'ID
-//   const item = jsonData.find((item) => item.id === id);
-
-//   return (
-//     <div className="template">
-//       <SlideShow item={item} />
-//       <Info item={item} />
-//     </div>
-//   );
-// };
-
-// export default Template;
-
-const pageDetail = () => {
-  // Récupérer l'ID à partir des paramètres de l'URL
+const PageDetail = () => {
   const { id } = useParams();
+  const photographers = data.photographers;
 
-  // Trouver l'élément correspondant dans le tableau de données en fonction de l'ID
-  const item = jsonData.find((item) => item.id === id);
-  console.log(item)
+  const medias = data.media;
+  // Récupérer l'ID à partir des paramètres de l'URL
+  const photographerId = photographers.find(
+    (item) => item.id === parseInt(id)
+  );
+
+  const mediasData = medias.filter(
+    (media) => media.photographerId === parseInt(id)
+  );
+
   return (
-    <div className="template">
-      {/* <SlideShow item={item} />
-      <Info item={item} /> */}
-    </div>
+    <>
+      <Banner photographerId={photographerId} />
+      <MediasDisplay mediasData={mediasData} photographerId={photographerId} />
+    </>
   );
 };
 
-export default pageDetail;
+export default PageDetail;

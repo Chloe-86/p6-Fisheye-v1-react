@@ -5,10 +5,9 @@ import List from "./List";
 
 const Home = () => {
   return (
-    <div>
-     {/* <Banner /> */}
+    <>
       <List /> 
-    </div>
+    </>
   );
 };
 

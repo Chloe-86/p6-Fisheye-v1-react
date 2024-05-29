@@ -1,18 +1,17 @@
 import React from "react";
 import "../styles/banner.css"
-import { useLocation } from "react-router-dom";
 
-// const Banner = () => {
-//     const location = useLocation();
-//   return (
-//     <div className="banner">
-//        <div className={location.pathname === "/about" ? "cover-about" : "cover"}>
-//         {location.pathname !== "/about" && (
-//           <h2 className="description">Chez vous partout et ailleurs</h2>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
+const Banner = ({photographerId}) => {
+  return (
+    <div className="banner">
+        <p>{photographerId.name}</p>
+        <p>{`${photographerId.city}, ${photographerId.country}`}</p>
+      <p></p>
+      <span>{photographerId.tagline}</span>
+    <button>Contactez-moi</button>
+   <img src= {require(`../assets/img/photographers/${photographerId.portrait}`)} alt="" />
+  </div>
+  );
+};
 
-// export default Banner;
+export default Banner;

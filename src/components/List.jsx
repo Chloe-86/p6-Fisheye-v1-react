@@ -1,10 +1,11 @@
 import React from 'react';
 import PhotographerCard from '../Templates/PhotographerCard';
-import jsonData from "../data/photographers.json";
+import data from "../data/data.json";
 import "../styles/main.css";
 
+
 const PhotographersList = () => {
-  const photographers = jsonData.photographers;
+  const photographers = data.photographers;
 
   if (!Array.isArray(photographers)) {
     console.error(
@@ -23,6 +24,7 @@ const PhotographersList = () => {
           location={`${photographer.city}, ${photographer.country}`}
           price={`${photographer.price}€/jour`}
           image={require(`../assets/img/photographers/${photographer.portrait}`)}
+          link={`../pages/${photographer.id}`}
         />
       ))}
     </ul>
