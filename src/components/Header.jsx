@@ -1,23 +1,19 @@
 import React from "react";
-import { NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import bigLogo from "../assets/img/bigLogo.svg";
-import "../styles/header.css";
+import "../assets/styles/header.css";
+import "../assets/styles/PhotographersList.css"
+import HeaderTemplate from "../Templates/HeaderTemplate";
 
 const Header = () => {
-
   return (
-      <header>
-        <h1>
+    <HeaderTemplate
+      logo={
+        <NavLink to="/">
           <img className="logo" src={bigLogo} alt="logo" />
-        </h1>
-        <nav>
-          <ul>
-            <li>
-              <NavLink to="/"  >Nos photographes</NavLink>
-            </li>
-          </ul>
-        </nav>
-      </header>
+        </NavLink>}
+        nav={<p>Nos photographes</p>}
+    />
   );
 };
 

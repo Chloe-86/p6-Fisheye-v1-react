@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom'; 
-import Home from '../components/Home';
+import Home from '../pages/Home';
 // import About from '../components/About';
 import PageDetail from '../pages/PageDetail';
 import NotFound from '../components/NotFound';
@@ -12,9 +12,6 @@ const Router = () => {
         <Route path="/" element={<Home />} />
         <Route path="/pages/:id" element={<PageDetail />} />
         <Route path="*" element={<NotFound />} />  
-        {/* <Route path="/about" element={<About />} />
-        <Route path="/data" element={<list />} />*/} 
-       
       </Routes>
     </div>
   );

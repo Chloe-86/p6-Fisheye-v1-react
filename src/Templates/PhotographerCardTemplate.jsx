@@ -1,31 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/list.css";
+import "../assets/styles/PhotographersList.css";
 
-const PhotographerCard = ({ name, location, price, image, link, tag }) => {
+const PhotographerCardTemplate = ({ name, location, price, image, tag, link }) => {
   const cardContent = (
     <React.Fragment>
       <img src={image} alt={name} />
-      <p>{name}</p>
-      <p>{location}</p>
+      <h2>{name}</h2>
+      <h3>{location}</h3>
+      <p>{tag}</p>
       <span>{price}</span>
-      <span>{tag}</span>
+
     </React.Fragment>
   );
 
   return (
-    <li className="grid-item">
-      <article className="card">
+      <article className="card grid-item">
         {link ? (
-          <Link className="wrapper" to={link}>
+          <Link to={link}>
             {cardContent}
           </Link>
         ) : (
           cardContent
         )}
       </article>
-    </li>
   );
 };
 
-export default PhotographerCard;
+export default PhotographerCardTemplate;

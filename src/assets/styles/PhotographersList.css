@@ -1,0 +1,85 @@
+.home .card {
+  height: 100%;
+  text-align: center;
+}
+.grid-container.home  {
+  /* display: grid;
+  grid-template-columns: repeat(3, 1fr); */
+  /* row-gap: 80px;
+  column-gap: 317px; */
+  display: flex;
+  gap: 70px;
+  column-gap: 317px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.grid-container.home img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  padding-bottom: 20px;
+}
+
+.photographer_section {
+  margin-top: 100px;
+}
+
+/* test */
+/* la page des photographe */
+
+.photographer_section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 70px;
+  margin-top: 100px;
+}
+
+.photographer_section article h2 {
+  color: #d3573c;
+  font-size: 36px;
+  margin-top: 20px;
+  font-weight: 400;
+  margin-bottom: 3px;
+  text-align: center;
+}
+
+.photographer_section article h3,
+.photograph-header .info h2 {
+  color: #901c1c;
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 3px;
+}
+
+.photographer_section article p {
+  font-size: 10px;
+  font-weight: 400;
+  margin-bottom: 3px;
+}
+.photographer_section article span {
+  color: #757575;
+  text-align: center;
+  font-family: "DM Sans";
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+/* Media query pour les écrans mobiles */
+@media (max-width: 1024px) {
+  .grid-container.home {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/* Media query pour les écrans mobiles */
+@media (max-width: 768px) {
+  .grid-container.home  {
+    grid-template-columns: 1fr;
+    background-color: white;
+    padding: unset;
+    gap: 20px;
+  }
+}

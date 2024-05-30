@@ -1,0 +1,61 @@
+.banner {
+  background-color: #fafafa;
+  padding: 0 50px 0 34px;
+  height: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 71px;
+  gap: 20px;
+}
+.banner .info h2 {
+  color: #901c1c;
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 3px;
+}
+.banner h2 {
+  font-size: 64px !important;
+}
+.banner h3 {
+  color: #901c1c;
+}
+
+.containerInfo p {
+  font-size: clamp(14px, 1.5vw, 24px);
+}
+
+.likes {
+  display: flex;
+  align-items: center;
+}
+.photo img{
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* bouton de contact */
+
+.contact_button {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  padding: 11px;
+  width: 170px;
+  height: 70px;
+  border: none;
+  background-color: #901C1C;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@media screen and (max-width:1024px){
+  .banner{
+    height: unset;
+    flex-direction: column;
+    text-align: center;
+   
+  }
+}
