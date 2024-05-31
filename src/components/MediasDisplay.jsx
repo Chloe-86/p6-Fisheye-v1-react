@@ -4,11 +4,13 @@ import "../assets/styles/media.css";
 import Lightbox from "../components/lightbox.jsx";
 import heart from "../assets/img/heart.svg";
 
-const MediasDisplay = ({ mediasData, photographerId }) => {
+const MediasDisplay = ({ mediasData, photographerId ,  updateLikes}) => {
   const [showLightbox, setShowLightbox] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [likes, setLikes] = useState(mediasData.map(photo => photo.likes));
 
-  const handleClick = (index) => {
+
+  const handleClickLightbox = (index) => {
     setSelectedIndex(index);
     setShowLightbox(true);
   };
@@ -18,10 +20,23 @@ const MediasDisplay = ({ mediasData, photographerId }) => {
     setSelectedIndex(0);
   };
 
+  const handleClickLike = (e, index) => {
+    // Vérifie si l'élément a déjà la classe liked
+    if (!e.target.classList.contains('liked')) {
+      const newLikes = [...likes];
+      newLikes[index] += 1;
+      setLikes(newLikes);
+      updateLikes(newLikes); 
+      // Ajoute la classe liked à l'élément cible
+      e.target.classList.add('liked');
+    }
+  };
+
   return (
     <>
       <ul className="grid-container detail">
         {mediasData.map((photo, index) => (
+         
           <li className="grid-item" key={photo.id}>
             <MediasCardTemplate
               name={photo.name}
@@ -31,8 +46,7 @@ const MediasDisplay = ({ mediasData, photographerId }) => {
                   : undefined
               }
               title={photo.title}
-              likesNumber={photo.likes}
-              // heart="❤️"
+              likesNumber={likes[index]}
               heart={heart}
               link={photo.link}
               video={
@@ -40,7 +54,8 @@ const MediasDisplay = ({ mediasData, photographerId }) => {
                   ? undefined
                   : require(`../assets/img/medias/${photographerId.name}/${photo.video}`)
               }
-              onClick={() => handleClick(index)}
+              onClick={() => handleClickLightbox(index)}
+              onClickLike={(e) => handleClickLike(e, index)}
             />
           </li>
         ))}
@@ -58,4 +73,4 @@ const MediasDisplay = ({ mediasData, photographerId }) => {
   );
 };
 
-export default MediasDisplay;
+ export default MediasDisplay;

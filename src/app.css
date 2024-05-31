@@ -10,7 +10,8 @@
   font-family: "DM Sans", sans-serif;
   margin: 0 auto;
   max-width: 1440px;
-  padding: 42px 106px 119px 100px;
+  /* padding: 42px 106px 119px 100px; */
+  padding: 42px 2.916vw 119px 2.916vw;
 }
 
 a {
@@ -65,12 +66,29 @@ li {
 .card {
   cursor: pointer;
 }
+.ref{
+  position: relative;
+}
+.photo{
+  overflow: hidden;
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  background-color: #f7f7f7;
+}
+.photo img{
+
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+
+}
 /* max tablet */
 @media screen and (max-width: 1024px) {
   .banner .description {
     line-height: 100%;
   }
   #root {
-    padding: 20px;
+    padding: 80px 20px;
   }
 }

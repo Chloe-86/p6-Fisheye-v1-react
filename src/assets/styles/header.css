@@ -19,6 +19,7 @@ header {
   @media screen and (max-width:992px) {
     header{
       justify-content: center;
+      flex-direction: column;
     }
   } 
 /* 

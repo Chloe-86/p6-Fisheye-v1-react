@@ -34,7 +34,7 @@ const Banner = ({ photographerId }) => {
         Contactez-moi
       </button>
       <ContactModal photographerId={photographerId} show={showModal} handleClose={handleClose} />
-      <div className="photo">
+      <div className={`photo ${photographerId.name}`}>
         <img
           src={require(`../assets/img/photographers/${photographerId.portrait}`)}
           alt=""

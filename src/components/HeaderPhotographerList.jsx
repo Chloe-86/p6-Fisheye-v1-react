@@ -26,6 +26,7 @@ const PhotographersList = () => {
             tag={photographer.tagline}
             image={require(`../assets/img/photographers/${photographer.portrait}`)}
             link={`../pages/${photographer.id}`}
+            customClassName={photographer.name.split(' ')[0].trim()}
           />
         ))}
     </>

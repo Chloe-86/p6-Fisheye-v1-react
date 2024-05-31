@@ -60,6 +60,15 @@
       justify-content: center;
     }
   }
+   /* Media query pour les écrans mobiles */
+   @media screen and (min-width: 768px) {
+    .grid-container.detail{
+      background-color: white;
+      padding: unset;
+      gap: 20px;
+   
+    }
+  }
   /* Media query pour les écrans mobiles */
   @media screen and (max-width: 768px) {
     .grid-container.detail{
@@ -69,4 +78,8 @@
    
     }
   }
-  
+  @media (max-width: 1300px){
+    .grid-container{
+      justify-content: center!important;
+    }
+  }

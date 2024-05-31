@@ -2,10 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../assets/styles/PhotographersList.css";
 
-const PhotographerCardTemplate = ({ name, location, price, image, tag, link }) => {
+const PhotographerCardTemplate = ({ name, location, price, image, tag, link, customClassName}) => {
   const cardContent = (
     <React.Fragment>
+      <div class={`photo ${customClassName}`}>
       <img src={image} alt={name} />
+      </div>
       <h2>{name}</h2>
       <h3>{location}</h3>
       <p>{tag}</p>
