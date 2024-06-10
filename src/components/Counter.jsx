@@ -1,6 +1,6 @@
 import React from "react";
 import "../assets/styles/counter.css"
-import blackLike from "../assets/img/blacklike.svg"
+import blackLike from "../assets/img/icons/blacklike.svg"
 
 
 const Counter = ({photographerId, newLikes}) => {

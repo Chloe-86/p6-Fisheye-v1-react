@@ -2,14 +2,14 @@ import React from "react";
 
 const HeaderTemplate = ({ logo, nav }) => {
   return (
-    <header>
-      <h1>
+    <header role="banner">
+      <div >
         {logo}
-      </h1>
+      </div>
       {nav && (
-        <nav>
+        <>
           {nav}
-        </nav>
+        </>
       )}
     </header>
   );

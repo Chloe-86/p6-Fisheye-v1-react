@@ -1,43 +1,50 @@
 import "../assets/styles/banner.css";
-import React, { useState } from "react"; 
+import React, { useState } from "react";
 import ContactModal from "./ModalContact";
-
+// import { useJsonDataContext } from "../jsonDataContext.js";
 
 const Banner = ({ photographerId }) => {
-
   const [showModal, setShowModal] = useState(false);
 
   const handleClick = (media) => {
     setShowModal(true);
- 
   };
 
   const handleClose = () => {
     setShowModal(false);
-  
   };
 
   return (
-    <div className="banner">
-      <div className="info">
-        <h2>{photographerId.name}</h2>
-        <h3>{`${photographerId.city}, ${photographerId.country}`}</h3>
+    <div className="banner" >
+      <div
+        className="info"
+        tabIndex="0"
+        aria-label={`${photographerId.name}, ${photographerId.city}, ${photographerId.country}, ${photographerId.tagline}`}
+      >
+        <h1>{photographerId.name}</h1>
+        <h2>{`${photographerId.city}, ${photographerId.country}`}</h2>
         <span>{photographerId.tagline}</span>
       </div>
       <button
         tabIndex="0"
-        role="button"
         aria-disabled="false"
-        aria-label="Appuyer ici pour ouvrir la modale de contact"
-        className="contact_button" onClick={handleClick}
+        aria-label="appuyer sur entrée pour ouvrir le formulaire de contact"
+        aria-labelledby={`Contact me ${photographerId.name}`}
+        className="contact_button"
+        onClick={handleClick}
       >
         Contactez-moi
       </button>
-      <ContactModal photographerId={photographerId} show={showModal} handleClose={handleClose} />
+      <ContactModal
+        photographerId={photographerId}
+        show={showModal}
+        handleClose={handleClose}
+      />
       <div className={`photo ${photographerId.name}`}>
-        <img
+        <img tabIndex="0"
+        aria-label={`Portrait de ${photographerId.name}`}
           src={require(`../assets/img/photographers/${photographerId.portrait}`)}
-          alt=""
+          alt={photographerId.name}
         />
       </div>
     </div>
@@ -45,4 +52,3 @@ const Banner = ({ photographerId }) => {
 };
 
 export default Banner;
-

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../assets/styles/lightbox.css";
 
 const Lightbox = ({ mediasData, show, handleClose, photographerId, initialIndex }) => {
+  const lightboxRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
   useEffect(() => {
@@ -9,34 +10,59 @@ const Lightbox = ({ mediasData, show, handleClose, photographerId, initialIndex 
   }, [initialIndex]);
 
 
-  const handleNextClick = () => {
+  const handleNextClick = (e) => {
     setCurrentIndex((index) => (index + 1) % mediasData.length);
   };
 
-  const handleBeforeClick = () => {
+  const handleBeforeClick = (e) => {
     setCurrentIndex((index) => (index - 1 + mediasData.length) % mediasData.length);
   };
+
+  const handleKeyDown = (event) => {
+    if (!show) return;
+    if(show){
+      if (event.key === "ArrowRight") {
+        handleNextClick();
+      } else if (event.key === "ArrowLeft") {
+        handleBeforeClick();
+      } else if (event.key === "Enter" && event.target.classList.contains("lightbox__close")) {
+        handleClose();
+      }
+    }
+  };
+
+  useEffect(() => {
+    setCurrentIndex(initialIndex);
+    if (show) {
+      lightboxRef.current.focus(); 
+    }
+  }, [initialIndex, show]);
 
   if (!show) return null;
 
   return (
-    <div className={`lightbox lightbox__special lightbox__container1 ${show ? "show" : ""}`}>
+    <div ref={lightboxRef} tabIndex="0" className={`lightbox lightbox__special lightbox__container1 ${show ? "show" : ""}`} onKeyDown={handleKeyDown}>
+
       <div className="lightbox-content lightbox__container2">
-        <button  className="lightbox__close close" onClick={handleClose}></button>
-        <button  className="lightbox__next" onClick={handleNextClick}></button>
-        <button  className="lightbox__prev" onClick={handleBeforeClick}></button>
+
+        <button  aria-labelledby="close dialog" aria-label="appuyer sur entrée pour fermer la lightbox" className="lightbox__close close" onClick={handleClose} ></button>
+
+        <button  aria-label="appuyer sur entrée ou la fleche de droite pour aller à la prochaine image"  aria-labelledby="Next image" className="lightbox__next" onClick={handleNextClick}></button>
+
+        <button  aria-label="appuyer sur entrée ou la fleche de gauche pour aller à l' image précedente" aria-labelledby="Previous image" className="lightbox__prev" onClick={handleBeforeClick}></button>
+
         {mediasData[currentIndex].image ? (
-          <img
+          <img 
             src={require(`../assets/img/medias/${photographerId.name}/${mediasData[currentIndex].image}`)}
             alt={mediasData[currentIndex].name}
           />
         ) : (
-          <video
+          <video 
             src={require(`../assets/img/medias/${photographerId.name}/${mediasData[currentIndex].video}`)}
             controls
           />
         )}
-        <p>{mediasData[currentIndex].title}</p>
+        <p tabIndex="0" aria-label={`Le titre de l'image est ${mediasData[currentIndex].title}`}>{mediasData[currentIndex].title}</p>
       </div>
     </div>
   );

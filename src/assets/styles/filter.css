@@ -1,12 +1,18 @@
 .filter {
   display: flex;
   gap: 30px;
-  padding-bottom: 23px;
+  padding-bottom: 58px;
 }
-.visible {
-    height: unset !important;
+.filter ul :nth-child(2),
+.filter ul :nth-child(3) {
+  display: none;
 }
-
+.filter ul.open :nth-child(2),
+.filter ul.open :nth-child(3) {
+  display: block;
+  display: flex;
+  align-items: center;
+}
 
 .filter p,
 .filter ul {
@@ -25,35 +31,48 @@
 .filter ul {
   width: 170px;
   background-color: #901c1c;
-
-  padding: 13px 10px 20px;
   position: relative;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   overflow: hidden;
-  height: 20px;
- 
+  position: absolute;
+
+}
+.filter ul.open{
+  padding-left:10px;
+  padding-right:10px;
+  width: 150px;
 }
 .filter ul li {
-    cursor: pointer;
-  padding-left: 10px;
-  color: #fff !important;
-  padding-top: 4px;
-  /* cursor: pointer; */
-}
-.filter ul li:nth-child(2),
-.filter ul li:nth-child(3) {
-  padding-top: 14px;
-}
-.filter ul li:nth-child(1),
-.filter ul li:nth-child(2) {
-  border-bottom: 1px solid white;
-  padding-bottom: 14px;
-}
-.filter img {
-  position: absolute;
-  top: 13px;
-  right: 0;
-  z-index: 2;
   cursor: pointer;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  color: #fff !important;
+  height: 69px;
+}
+.filter ul.open li{
+  padding-left: unset;
+}
+.filter ul.open li:hover{
+  background-color: #DB8876;
+  color: #000000!important;
+}
+
+.filter ul.open li:nth-child(1),
+.filter ul.open li:nth-child(2) {
+  border-bottom: 1px solid white ;
+}
+
+.arrow {
+  position: absolute;
+  top: 20px;
+  right: -160px;
+  z-index: 50;
+  cursor: pointer;
+  transition: ease 1s;
+}
+
+ul.open + .arrow {
+  transform: rotate(180deg);
 }

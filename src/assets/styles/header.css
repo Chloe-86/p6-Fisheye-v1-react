@@ -1,6 +1,7 @@
 header {
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 40px;
   }
   
   header,
@@ -8,7 +9,7 @@ header {
     display: flex;
   }
   
-  header p {
+  header h1 {
     color: #901c1c;
     font-size: 36px;
     font-style: normal;

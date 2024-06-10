@@ -1,20 +1,28 @@
-import React, { useState } from "react"; 
+import React, { useState} from "react";
 import { useParams } from "react-router-dom";
-import data from "../data/data.json";
+// import data from "../data/data.json";
 import Banner from "../components/Banner.jsx";
 import MediasDisplay from "../components/MediasDisplay.jsx";
 import HeaderTemplate from "../Templates/HeaderTemplate.jsx";
 import { NavLink } from "react-router-dom";
-import bigLogo from "../assets/img/bigLogo.svg";
+import bigLogo from "../assets/img/icons/bigLogo.svg";
 import Counter from "../components/Counter.jsx";
 import "../assets/styles/counter.css";
 import Filter from "../components/Filter.jsx";
+import { useJsonDataContext } from "../jsonDataContext.js";
 
 const PageDetail = () => {
-  const { id } = useParams();
-  const photographers = data.photographers;
+  // const focusRef = useRef(null);
 
-  const medias = data.media;
+  // useEffect(() => {
+  //   focusRef.current && focusRef.current.focus();
+  // }, []);
+
+  const { id } = useParams();
+  const { jsonData } = useJsonDataContext();
+  const photographers = jsonData.photographers;
+
+  const medias = jsonData.media;
   const photographerId = photographers.find((item) => item.id === parseInt(id));
 
   const mediasData = medias.filter(
@@ -32,27 +40,38 @@ const PageDetail = () => {
 
   // État local pour stocker les données triées
   const [sortedData, setSortedData] = useState(mediasData);
+
   // Fonction de rappel pour mettre à jour les données triées
   const updateSortedData = (sortedData) => {
-    console.log("Updating Sorted Data:", sortedData);
     setSortedData(sortedData);
   };
 
-
-
   return (
     <>
-      <HeaderTemplate
+      <HeaderTemplate 
         logo={
-          <NavLink to="/">
+          <NavLink to="/" aria-label="Fisheye Home page" >
             <img className="logo" src={bigLogo} alt="logo" />
           </NavLink>
         }
       />
-      <Banner photographerId={photographerId} />
-      <Filter mediasData={mediasData} updateSortedData={updateSortedData} />
-      <MediasDisplay  key={sortedData.map(media => media.id).join(',')}mediasData={sortedData} photographerId={photographerId} updateLikes={updateLikes}/>
-      <Counter photographerId={photographerId} newLikes={updatedLikes} />
+      <main>
+        <section>
+          <Banner photographerId={photographerId} />
+        </section>
+        <section>
+          <Filter mediasData={mediasData} updateSortedData={updateSortedData} />
+          <MediasDisplay
+            key={sortedData.map((media) => media.id).join(",")}
+            mediasData={sortedData}
+            photographerId={photographerId}
+            updateLikes={updateLikes}
+          />
+        </section>
+      </main>
+      <footer>
+        <Counter photographerId={photographerId} newLikes={updatedLikes} />
+      </footer>
     </>
   );
 };

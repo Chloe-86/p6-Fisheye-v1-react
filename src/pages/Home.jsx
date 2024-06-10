@@ -1,16 +1,29 @@
 import React from "react";
-import HeadePhotographerList from "../components/HeaderPhotographerList";
+import PhotographerList from "../components/PhotographerList";
 // import Banner from "./Banner";
-import Header from '../components/Header';
+import { NavLink } from "react-router-dom";
+import bigLogo from "../assets/img/icons/bigLogo.svg";
+import "../assets/styles/header.css";
+import "../assets/styles/PhotographersList.css"
+import HeaderTemplate from "../Templates/HeaderTemplate";
 
 const Home = () => {
+
+
   return (
     <>
-     <Header />
+    <HeaderTemplate 
+      logo={
+        <NavLink to="/" aria-label="Fisheye Home page">
+          <img className="logo" src={bigLogo} alt="Fisheye logo" />
+        </NavLink>}
+        nav={<h1 tabIndex="0">Nos photographes</h1>}
+    />
+    <main>
     <section className="photographer_section grid-container home">
-    <HeadePhotographerList /> 
+    <PhotographerList/> 
     </section>
-   
+    </main>
     </>
   );
 };

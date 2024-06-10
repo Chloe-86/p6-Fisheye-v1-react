@@ -1,20 +1,14 @@
-import React from 'react';
 
-// import Footer from './components/Footer';
+// src/App.js
+import React from 'react';
 import Router from './router/Router';
-import './app.css'
-import './assets/styles/main.css'
+import './app.css';
+
 
 const App = () => {
   return (
-    <>
-      
-      <main>
-      <Router />
-      </main>
-      {/* <Footer /> */}
-    </>
+        <Router />
   );
-}
+};
 
 export default App;

@@ -1,22 +1,11 @@
-import React, { useState } from "react";
+
+import React, { useState} from "react";
 import arrow from "../assets/img/icons/mini-arrow.svg";
 import "../assets/styles/filter.css";
 
-const Filter = ({ mediasData, updateSortedData }) => {
+const Filter = ({ mediasData, updateSortedData}) => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const onToggle = () => {
-    // Inverse l'état isOpen
-    setIsOpen((prevIsOpen) => !prevIsOpen);
-    const ul = document.querySelector(".filter ul");
-    const isVisible = ul.classList.contains("visible");
-
-    // Si la liste est déjà visible, met à jour isOpen en conséquence
-    if (isVisible && !isOpen) {
-      setIsOpen(true);
-    }
-  };
-
+  const [activeFilter, setActiveFilter] = useState(null);
 
   const sortByDate = (data) => {
     const sortedData = [...data].sort(
@@ -31,69 +20,95 @@ const Filter = ({ mediasData, updateSortedData }) => {
   };
 
   const sortByTitle = (data) => {
-    const sortedData = [...data].sort((a, b) =>
-      a.title.localeCompare(b.title)
-    );
+    const sortedData = [...data].sort((a, b) => a.title.localeCompare(b.title));
     return sortedData;
   };
 
-  const onclickSortByDate = () => {
-    const sortedData = sortByDate(mediasData);
-    updateSortedData(sortedData);
+  const [filters, setFilters] = useState([
+    { id: "popularity", label: "Popularité", action: sortByPop },
+    { id: "date", label: "Date", action: sortByDate },
+    { id: "title", label: "Titre", action: sortByTitle },
+  ]);
+
+  const onToggle = () => {
+    setIsOpen((prevIsOpen) => !prevIsOpen);
   };
 
-  const onclickSortByPop = () => {
-    const sortedData = sortByPop(mediasData);
-    updateSortedData(sortedData);
-   };
-
-  const onclickSortByTitle = () => {
-    const sortedData = sortByTitle(mediasData);
-    updateSortedData(sortedData);
+  const handleFilterClick = (filterId) => {
+      const selectedFilter = filters.find((filter) => filter.id === filterId);
+      const sortedData = selectedFilter.action(mediasData);
+      updateSortedData(sortedData);
+  
+      setFilters((prevFilters) => {
+        const updatedFilters = prevFilters.filter(
+          (filter) => filter.id !== filterId
+        );
+        return [selectedFilter, ...updatedFilters];
+      });
+      setActiveFilter(filterId);
+      setTimeout(() => {
+        setIsOpen(false); 
+      }, 0); 
   };
 
+  const handleKeyEnter = (e) => {
+    if (e.key === "Enter") {
+      onToggle()
+      const activeFilterElement = document.querySelector(".dropList li");
+      if (activeFilterElement) {
+        activeFilterElement.focus();
+      }//a refaire avec un useref(null)+useeffect focus
+    }
+  };
+
+  const handleKeyPress = (e, filterId) => {
+    if (e.key === "Enter") {
+      handleFilterClick(filterId);
+    }
+  };
 
   return (
     <>
       <div className="filter">
         <div>
-          <p tabIndex="0" aria-label="trier par">
-            Trier par
-          </p>
+          <p aria-label="trier par">Trier par</p>
         </div>
-        <div className="ref" onClick={onToggle}>
-          <img
-            src={arrow}
-            alt="fleche"
-            tabIndex="0"
-            aria-label="cliquez pour ouvrir les choix du filtre"
-          ></img>
-          <ul className={`${isOpen ? "visible" : ""}`}>
-            <li
-              tabIndex="0"
-              data-active="popularity"
-              id="pop"
-              onClick={onclickSortByPop}
-            >
-              Popularité
-            </li>
-            <li
-              tabIndex="0"
-              data-active="ASC"
-              id="date"
-              onClick={onclickSortByDate}
-            >
-              Date
-            </li>
-            <li
-              tabIndex="0"
-              data-active="title"
-              id="title"
-              onClick={onclickSortByTitle}
-            >
-              Titre
-            </li>
+        <div
+          aria-expanded={isOpen}
+          role="button"
+          aria-haspopup="listbox"
+          className="ref"
+          onClick={onToggle}
+        >
+          <ul
+          tabIndex="0"
+            aria-activedescendant={activeFilter}
+            aria-labelledby="sortByLabel"
+            role="listbox"
+            className={`dropList ${isOpen ? "open" : "closed"}`}
+          >
+            {filters.map((filter, index) => (
+              <li
+                key={filter.id}
+                tabIndex= {"0"}
+                data-active={filter.id}
+                id={filter.id}
+                onClick={() => handleFilterClick(filter.id)}
+                onKeyDown={(e) => handleKeyPress(e, filter.id)}
+                
+              >
+                {filter.label}
+              </li>
+            ))}
+       
           </ul>
+          <img className="arrow"
+              onKeyDown={(e) => handleKeyEnter(e)}
+              src={arrow}
+              alt="fleche"
+              tabIndex="0"
+              aria-label="cliquez pour ouvrir les choix du filtre"
+            />
         </div>
       </div>
     </>
