@@ -18,8 +18,6 @@ const Banner = ({ photographerId }) => {
     <div className="banner" >
       <div
         className="info"
-        tabIndex="0"
-        aria-label={`${photographerId.name}, ${photographerId.city}, ${photographerId.country}, ${photographerId.tagline}`}
       >
         <h1>{photographerId.name}</h1>
         <h2>{`${photographerId.city}, ${photographerId.country}`}</h2>
@@ -28,7 +26,6 @@ const Banner = ({ photographerId }) => {
       <button
         tabIndex="0"
         aria-disabled="false"
-        aria-label="appuyer sur entrée pour ouvrir le formulaire de contact"
         aria-labelledby={`Contact me ${photographerId.name}`}
         className="contact_button"
         onClick={handleClick}

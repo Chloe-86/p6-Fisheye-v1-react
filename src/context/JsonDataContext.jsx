@@ -13,7 +13,7 @@ export const JsonDataProvider = ({ children }) => {
       .then(response => response.json())
       .then(data => setJsonData(data))
       .catch(error => console.error('Erreur lors du fetch :', error));
-  }, []); // Le tableau vide [] indique que cet effet ne dépend d'aucune valeur et ne doit être exécuté qu'une seule fois
+  }, []);
 
   return (
     <JsonDataContext.Provider value={{ jsonData, setJsonData }}>

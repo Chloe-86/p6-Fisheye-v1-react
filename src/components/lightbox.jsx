@@ -27,6 +27,8 @@ const Lightbox = ({ mediasData, show, handleClose, photographerId, initialIndex 
         handleBeforeClick();
       } else if (event.key === "Enter" && event.target.classList.contains("lightbox__close")) {
         handleClose();
+      }else if (event.key === "Escape") {
+        handleClose();
       }
     }
   };
@@ -45,11 +47,11 @@ const Lightbox = ({ mediasData, show, handleClose, photographerId, initialIndex 
 
       <div className="lightbox-content lightbox__container2">
 
-        <button  aria-labelledby="close dialog" aria-label="appuyer sur entrée pour fermer la lightbox" className="lightbox__close close" onClick={handleClose} ></button>
+        <button  aria-labelledby="close dialog" className="lightbox__close close" onClick={handleClose} ></button>
 
-        <button  aria-label="appuyer sur entrée ou la fleche de droite pour aller à la prochaine image"  aria-labelledby="Next image" className="lightbox__next" onClick={handleNextClick}></button>
+        <button  aria-labelledby="Next image" className="lightbox__next" onClick={handleNextClick}></button>
 
-        <button  aria-label="appuyer sur entrée ou la fleche de gauche pour aller à l' image précedente" aria-labelledby="Previous image" className="lightbox__prev" onClick={handleBeforeClick}></button>
+        <button  aria-labelledby="Previous image" className="lightbox__prev" onClick={handleBeforeClick}></button>
 
         {mediasData[currentIndex].image ? (
           <img 
@@ -62,7 +64,7 @@ const Lightbox = ({ mediasData, show, handleClose, photographerId, initialIndex 
             controls
           />
         )}
-        <p tabIndex="0" aria-label={`Le titre de l'image est ${mediasData[currentIndex].title}`}>{mediasData[currentIndex].title}</p>
+        <p >{mediasData[currentIndex].title}</p>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 
 import React, {useRef, useEffect} from "react";
 import "../assets/styles/PhotographersList.css";
-import { useJsonDataContext } from "../jsonDataContext.js";
+import { useJsonDataContext } from "../context/JsonDataContext.jsx";
 import { Link } from "react-router-dom";
 
 const PhotographersList = () => {

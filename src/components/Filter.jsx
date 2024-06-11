@@ -3,7 +3,7 @@ import React, { useState} from "react";
 import arrow from "../assets/img/icons/mini-arrow.svg";
 import "../assets/styles/filter.css";
 
-const Filter = ({ mediasData, updateSortedData}) => {
+const Filter = ({ mediasData, updateSortedData,  updateLikes }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState(null);
 
@@ -37,6 +37,8 @@ const Filter = ({ mediasData, updateSortedData}) => {
   const handleFilterClick = (filterId) => {
       const selectedFilter = filters.find((filter) => filter.id === filterId);
       const sortedData = selectedFilter.action(mediasData);
+      // const sortedLikes = sortedData.map((item) => item.likes); // Extract likes from sorted data
+      // updateLikes(sortedLikes); 
       updateSortedData(sortedData);
   
       setFilters((prevFilters) => {
@@ -57,7 +59,7 @@ const Filter = ({ mediasData, updateSortedData}) => {
       const activeFilterElement = document.querySelector(".dropList li");
       if (activeFilterElement) {
         activeFilterElement.focus();
-      }//a refaire avec un useref(null)+useeffect focus
+      }
     }
   };
 
@@ -81,7 +83,6 @@ const Filter = ({ mediasData, updateSortedData}) => {
           onClick={onToggle}
         >
           <ul
-          tabIndex="0"
             aria-activedescendant={activeFilter}
             aria-labelledby="sortByLabel"
             role="listbox"

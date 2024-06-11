@@ -79,15 +79,12 @@ import close from "../assets/img/icons/close.svg";
 
 const ContactModal = ({ show, handleClose, photographerId }) => {
   
-  // const [send, setSend] = useState(false); 
-
   const [firstName, setFirstName] = useState(''); 
   const [lastName, setLastName] = useState(''); 
   const [email, setEmail] = useState(''); 
   const [message, setMessage] = useState(''); 
 
   const handleClick =()=>{
-    // setMessage(true);
   console.log(firstName)
   console.log(lastName)
   console.log(email)

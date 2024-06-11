@@ -64,7 +64,7 @@ li {
   align-items: center;
 }
 .close,
-.card {
+.card , video{
   cursor: pointer;
 }
 .ref{

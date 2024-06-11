@@ -8,12 +8,6 @@ const MediasDisplay = ({ mediasData, photographerId, updateLikes }) => {
   const [showLightbox, setShowLightbox] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [likes, setLikes] = useState(mediasData.map(photo => photo.likes));
-  // const [likedItems, setLikedItems] = useState([]);
-
-  // useEffect(() => {
-  //   const storedLikedItems = JSON.parse(window.localStorage.getItem('likedItems')) || [];
-  //   setLikedItems(storedLikedItems);
-  // }, []);
 
   const handleClickLightbox = (index) => {
     setSelectedIndex(index);  
@@ -25,7 +19,6 @@ const MediasDisplay = ({ mediasData, photographerId, updateLikes }) => {
     setSelectedIndex(0);                
   };
 
-
   const handleClickLike = (e, index) => {
     // Vérifie si l'élément a déjà la classe liked
     if (!e.target.classList.contains('liked')) {
@@ -35,11 +28,6 @@ const MediasDisplay = ({ mediasData, photographerId, updateLikes }) => {
       updateLikes(newLikes); 
       // Ajoute la classe liked à l'élément cible
       e.target.classList.add('liked');
-
-    // // Add to local storage
-    // const likedItems = JSON.parse(window.localStorage.getItem('likedItems')) || [];
-    // likedItems.push(mediasData[index].id);
-    // window.localStorage.setItem('likedItems', JSON.stringify(likedItems));
     }
   };
 
@@ -63,7 +51,8 @@ const MediasDisplay = ({ mediasData, photographerId, updateLikes }) => {
               >
               <div className="containerImage">
                 {photo.video ? (
-                  <video src={require(`../assets/img/medias/${photographerId.name}/${photo.video}`)} controls />
+                  <video src={require(`../assets/img/medias/${photographerId.name}/${photo.video}`)} controls   onClick={() => handleClickLightbox(index)}
+                  onKeyDown={(e) => handleKeyEnterLightbox(e, index)}/>
                 ) : (
                   <img  tabIndex="0" className="lightboxImg"
                     aria-label="Appuyer sur entrée pour ouvrir la lightbox"
