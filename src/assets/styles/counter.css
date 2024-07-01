@@ -1,37 +1,35 @@
-.likeWrapper{
-    position: fixed;
-    bottom: -21px;
-    right: 36px;
-    z-index: 10;
-   
-  }
+.likeWrapper {
+  position: fixed;
+  bottom: -21px;
+  right: 36px;
+  z-index: 10;
+}
+.card-like {
+  width: 376px;
+  max-height: 89px;
+  color: black;
+  border-radius: 5px;
+  background: #db8876;
+  display: flex;
+  justify-content: space-between;
+  padding: 34px 21px;
+  gap: 65px;
+}
+.card-like p {
+  color: #000;
+  text-align: center;
+  font-family: "DM Sans";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.card-like img {
+  width: 21px;
+  height: auto;
+}
+@media screen and (max-width: 768px) {
   .card-like {
-    width: 376px; 
-    max-height: 89px; 
-    color: black;
-    border-radius: 5px;
-    background: #db8876;
-    display: flex;
-    justify-content: space-between;
-    padding: 34px 21px;
-    gap: 65px;
+    width: unset;
   }
-  .card-like p {
-    color: #000;
-    text-align: center;
-    font-family: "DM Sans";
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
-  .card-like img {
-    width: 21px;
-    height: auto;
-  }
-  @media screen and (max-width: 768px){
-    .card-like{
-      width: unset;
-    }
- 
-  }
+}

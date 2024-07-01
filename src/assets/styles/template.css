@@ -29,9 +29,8 @@
 }
 .template .dropdown {
   display: flex;
-
 }
-.template .dropdown-bar{
+.template .dropdown-bar {
   align-items: center;
 }
 .cercle-profil {
@@ -52,9 +51,6 @@
   font-size: 14px;
   font-weight: 700;
 }
-ul.equipements {
-  flex-direction: column;
-}
 
 .title {
   font-size: 36px;
@@ -62,8 +58,8 @@ ul.equipements {
   font-weight: 700;
   line-height: 142.6%;
 }
-.title-bar{
-  font-size: 18px!important;
+.title-bar {
+  font-size: 18px !important;
 }
 .space {
   gap: 76px;
@@ -107,13 +103,14 @@ ul.equipements {
   font-weight: 400;
 }
 @media screen and (max-width: 768px) {
-  .left-part, .right-part {
+  .left-part,
+  .right-part {
     width: unset;
   }
-  .top{
-    margin-top: 15px!important;
+  .top {
+    margin-top: 15px !important;
   }
-  .top .right-part{
+  .top .right-part {
     width: 100%;
     display: flex;
     flex-direction: row-reverse;
@@ -121,16 +118,16 @@ ul.equipements {
     align-items: center;
     margin: 16px 0 13px 0;
   }
-  .top .name{
+  .top .name {
     padding-right: 10px;
     width: 93px;
   }
-  .space{
+  .space {
     flex-direction: column;
-    gap: 20px!important;
+    gap: 20px !important;
   }
-.tag{
-  padding: 2px 22px;
-  font-size: 10px;
-}
+  .tag {
+    padding: 2px 22px;
+    font-size: 10px;
+  }
 }

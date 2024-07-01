@@ -47,8 +47,6 @@ video {
 }
 
 .containerInfo {
- 
-  
   display: flex;
   justify-content: space-between;
 }
@@ -62,18 +60,26 @@ video {
   line-height: normal;
 } 
 
+.likes {
+  display: flex;
+  align-items: center;
+}
+
 img.clicklike {
   width: 24px !important;
   height: 24px !important;
   object-fit: cover;
 }
-/* Media query pour les écrans mobiles */
+.liked{
+  pointer-events: none;
+}
+
 @media screen and (max-width: 1024px) {
   .grid-container.detail {
     justify-content: center;
   }
 }
-/* Media query pour les écrans mobiles */
+
 @media screen and (min-width: 768px) {
   .grid-container.detail {
     background-color: white;
@@ -81,7 +87,7 @@ img.clicklike {
     gap: 20px;
   }
 }
-/* Media query pour les écrans mobiles */
+
 @media screen and (max-width: 768px) {
   .grid-container.detail {
     background-color: white;

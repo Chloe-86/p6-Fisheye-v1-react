@@ -3,6 +3,7 @@ import React, {useRef, useEffect} from "react";
 import "../assets/styles/PhotographersList.css";
 import { useJsonDataContext } from "../context/JsonDataContext.jsx";
 import { Link } from "react-router-dom";
+import { Card } from "../Templates/Card.jsx";
 
 const PhotographersList = () => {
 
@@ -30,6 +31,7 @@ const PhotographersList = () => {
           to={`../pages/${photographer.id}`}
           aria-label={`${photographer.name}, ${photographer.city}, ${photographer.country}, ${photographer.tagline}, ${photographer.price}€/jour. Appuyez sur Entrée pour voir la page de ${photographer.name}`}
         >
+
           <article className="card grid-item" ref={focusRef}>
             <div className={`photo ${photographer.name.split(" ")[0].trim()}`}>
               <img
@@ -37,9 +39,13 @@ const PhotographersList = () => {
                 alt={photographer.name}
               />
             </div>
-            <h2>{photographer.name}</h2>
-            <h3>{`${photographer.city}, ${photographer.country}`}</h3>
-            <p>{photographer.tagline}</p>
+            <Card 
+              name={photographer.name}
+              city={photographer.city}
+              country={photographer.country}
+              tagline={photographer.tagline}
+              nameTag="h2"
+            />
             <span>{`${photographer.price}€/jour`}</span>
           </article>
         </Link>

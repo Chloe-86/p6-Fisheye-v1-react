@@ -1,16 +1,21 @@
-
-import React, { useState} from "react";
+import React, { useState } from "react";
 import arrow from "../assets/img/icons/mini-arrow.svg";
 import "../assets/styles/filter.css";
 
-const Filter = ({ mediasData, updateSortedData,  updateLikes }) => {
+const Filter = ({ mediasData, updateSortedData, newLikes}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState(null);
 
+  const integrateLikes = (data, likes) => {
+    return data.map((item) => ({
+      ...item,
+      likes: likes[item.id]?.count || item.likes,
+      liked: likes[item.id]?.liked || false,
+    }));
+  };
+
   const sortByDate = (data) => {
-    const sortedData = [...data].sort(
-      (a, b) => new Date(b.date) - new Date(a.date)
-    );
+    const sortedData = [...data].sort((a, b) => new Date(b.date) - new Date(a.date));
     return sortedData;
   };
 
@@ -35,27 +40,35 @@ const Filter = ({ mediasData, updateSortedData,  updateLikes }) => {
   };
 
   const handleFilterClick = (filterId) => {
-      const selectedFilter = filters.find((filter) => filter.id === filterId);
-      const sortedData = selectedFilter.action(mediasData);
-      // const sortedLikes = sortedData.map((item) => item.likes); // Extract likes from sorted data
-      // updateLikes(sortedLikes); 
-      updateSortedData(sortedData);
-  
-      setFilters((prevFilters) => {
-        const updatedFilters = prevFilters.filter(
-          (filter) => filter.id !== filterId
-        );
-        return [selectedFilter, ...updatedFilters];
+    const selectedFilter = filters.find((filter) => filter.id === filterId);
+    const integratedData = integrateLikes(mediasData, newLikes);
+    setTimeout(() => {
+      integratedData.forEach((item) => {
+        const element = document.querySelector(`.clicklike[data-id="${item.id}"]`);
+        if (element && item.liked) {
+          element.classList.add("liked");
+        } else if (element && !item.liked) {
+          element.classList.remove("liked");
+        }
       });
-      setActiveFilter(filterId);
-      setTimeout(() => {
-        setIsOpen(false); 
-      }, 0); 
-  };
+    }, 0);
+    
+    const sortedData = selectedFilter.action(integratedData);
+    updateSortedData(sortedData);
+    setFilters((prevFilters) => {
+      const updatedFilters = prevFilters.filter((filter) => filter.id !== filterId);
+      return [selectedFilter, ...updatedFilters];
+    });
+    setActiveFilter(filterId);
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 0);
+
+   };
 
   const handleKeyEnter = (e) => {
     if (e.key === "Enter") {
-      onToggle()
+      onToggle();
       const activeFilterElement = document.querySelector(".dropList li");
       if (activeFilterElement) {
         activeFilterElement.focus();
@@ -71,47 +84,36 @@ const Filter = ({ mediasData, updateSortedData,  updateLikes }) => {
 
   return (
     <>
-      <div className="filter">
-        <div>
-          <p aria-label="trier par">Trier par</p>
-        </div>
-        <div
-          aria-expanded={isOpen}
-          role="button"
-          aria-haspopup="listbox"
-          className="ref"
-          onClick={onToggle}
-        >
-          <ul
-            aria-activedescendant={activeFilter}
-            aria-labelledby="sortByLabel"
-            role="listbox"
-            className={`dropList ${isOpen ? "open" : "closed"}`}
-          >
-            {filters.map((filter, index) => (
-              <li
-                key={filter.id}
-                tabIndex= {"0"}
-                data-active={filter.id}
-                id={filter.id}
-                onClick={() => handleFilterClick(filter.id)}
-                onKeyDown={(e) => handleKeyPress(e, filter.id)}
-                
-              >
-                {filter.label}
-              </li>
-            ))}
-       
-          </ul>
-          <img className="arrow"
+        <div className="filter">
+          <div>
+            <p>Trier par</p>
+          </div>
+          <div aria-expanded={isOpen} role='list' className="ref" onClick={onToggle}>
+          <img
+              className="arrow"
               onKeyDown={(e) => handleKeyEnter(e)}
               src={arrow}
               alt="fleche"
               tabIndex="0"
               aria-label="cliquez pour ouvrir les choix du filtre"
             />
+            <ul aria-activedescendant={activeFilter}  className={`dropList ${isOpen ? "open" : "closed"}`}>
+              {filters.map((filter, index) => (
+                <li
+                  key={filter.id}
+                  tabIndex="0"
+                  data-active={filter.id}
+                  id={filter.id}
+                  onClick={() => handleFilterClick(filter.id)}
+                  onKeyDown={(e) => handleKeyPress(e, filter.id)}
+                >
+                  {filter.label}
+                </li>
+              ))}
+            </ul>
+           
+          </div>
         </div>
-      </div>
     </>
   );
 };

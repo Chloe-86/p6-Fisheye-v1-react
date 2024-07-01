@@ -12,10 +12,7 @@
   overflow: auto;
   z-index: 1000;   
 }
-.lightbox__container1 {
-  /* padding: 40px 86px 101px; */
-  /* padding-top: 40px; */
-}
+
 .lightbox__next,
 .lightbox__prev {
   border: none;

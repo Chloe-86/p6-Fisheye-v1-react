@@ -8,8 +8,6 @@ import "../assets/styles/PhotographersList.css"
 import HeaderTemplate from "../Templates/HeaderTemplate";
 
 const Home = () => {
-
-
   return (
     <>
     <HeaderTemplate 
@@ -21,6 +19,7 @@ const Home = () => {
     />
     <main>
     <section className="photographer_section grid-container home">
+    <h2 class="visually-hidden">Liste des photographes</h2>
     <PhotographerList/> 
     </section>
     </main>

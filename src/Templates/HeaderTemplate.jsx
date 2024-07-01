@@ -2,7 +2,7 @@ import React from "react";
 
 const HeaderTemplate = ({ logo, nav }) => {
   return (
-    <header role="banner">
+    <header>
       <div >
         {logo}
       </div>

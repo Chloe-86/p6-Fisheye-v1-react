@@ -1,75 +1,91 @@
-import React, { useState} from "react";
+
+import React, { useState } from "react";
 import "../assets/styles/media.css";
 import Lightbox from "../components/lightbox.jsx";
 import heart from "../assets/img/icons/heart.svg";
-// import { useJsonDataContext } from "../jsonDataContext.js";
 
 const MediasDisplay = ({ mediasData, photographerId, updateLikes }) => {
   const [showLightbox, setShowLightbox] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [likes, setLikes] = useState(mediasData.map(photo => photo.likes));
+  const [likes, setLikes] = useState(() => {
+    const initialLikes = {};
+    mediasData.forEach(photo => {
+      initialLikes[photo.id] = { count: photo.likes, liked: false };
+    });
+    return initialLikes;
+  });
 
   const handleClickLightbox = (index) => {
-    setSelectedIndex(index);  
+    setSelectedIndex(index);
     setShowLightbox(true);
   };
 
   const handleClose = () => {
     setShowLightbox(false);
-    setSelectedIndex(0);                
+    setSelectedIndex(0);
   };
 
-  const handleClickLike = (e, index) => {
-    // Vérifie si l'élément a déjà la classe liked
-    if (!e.target.classList.contains('liked')) {
-      const newLikes = [...likes];
-      newLikes[index] += 1;
+  const handleClickLike = (e, photoId) => {
+    if (!likes[photoId].liked) {
+      const newLikes = { ...likes };
+      newLikes[photoId] = {
+        count: newLikes[photoId].count + 1,
+        liked: true,
+      };
       setLikes(newLikes);
-      updateLikes(newLikes); 
-      // Ajoute la classe liked à l'élément cible
-      e.target.classList.add('liked');
+      updateLikes(newLikes);
     }
   };
-
+ 
   const handleKeyEnterLightbox = (e, index) => {
     if (e.key === 'Enter') {
       handleClickLightbox(index);
     }
   };
-  const handleKeyEnterLike = (e, index) => {
+
+  const handleKeyEnterLike = (e, photoId) => {
     if (e.key === 'Enter') {
-      handleClickLike(e, index);
+      handleClickLike(e, photoId);
     }
   };
 
   return (
     <>
       <ul className="grid-container detail">
+
         {mediasData.map((photo, index) => (
           <li className="grid-item" key={photo.id}>
-            <div className="media-card-template"
-              >
+            <article className="media-card-template">
+            <h3 class="visually-hidden">carte</h3>
               <div className="containerImage">
                 {photo.video ? (
-                  <video src={require(`../assets/img/medias/${photographerId.name}/${photo.video}`)} controls   onClick={() => handleClickLightbox(index)}
-                  onKeyDown={(e) => handleKeyEnterLightbox(e, index)}/>
+                  <video
+                    src={require(`../assets/img/medias/${photographerId.name}/${photo.video}`)}
+                    controls
+                    onClick={() => handleClickLightbox(index)}
+                    onKeyDown={(e) => handleKeyEnterLightbox(e, index)}
+                  />
                 ) : (
-                  <img  tabIndex="0" className="lightboxImg"
+                  <img
+                    tabIndex="0"
+                    className="lightboxImg"
                     aria-label="Appuyer sur entrée pour ouvrir la lightbox"
                     src={require(`../assets/img/medias/${photographerId.name}/${photo.image}`)}
-                    alt={photo.name}
+                    alt={photo.title}
                     onClick={() => handleClickLightbox(index)}
                     onKeyDown={(e) => handleKeyEnterLightbox(e, index)}
                   />
                 )}
                 <div className="containerInfo">
-                  <p aria-label="titre">{photo.title}</p>
+                  <p >{photo.title}</p>
                   <div className="likes">
-                    <p >{likes[index]}</p>
-                    <img tabIndex="0"
-                      onClick={(e) => handleClickLike(e, index)}
-                      onKeyDown={(e) => handleKeyEnterLike(e, index)}
-                      className={`clicklike`}
+                  <p>{likes[photo.id].count}</p>
+                    <img
+                      tabIndex="0"
+                      data-id={photo.id}
+                      onClick={(e) => handleClickLike(e, photo.id)}
+                      onKeyDown={(e) => handleKeyEnterLike(e, photo.id)}
+                      className={`clicklike ${likes[photo.id].liked ? 'liked' : ''}`}
                       aria-label="Appuyer sur entrée ici pour liker"
                       src={heart}
                       alt="liker le coeur"
@@ -77,7 +93,7 @@ const MediasDisplay = ({ mediasData, photographerId, updateLikes }) => {
                   </div>
                 </div>
               </div>
-            </div>
+            </article>
           </li>
         ))}
       </ul>

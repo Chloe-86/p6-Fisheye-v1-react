@@ -9,15 +9,10 @@ import bigLogo from "../assets/img/icons/bigLogo.svg";
 import Counter from "../components/Counter.jsx";
 import "../assets/styles/counter.css";
 import Filter from "../components/Filter.jsx";
-import { useJsonDataContext } from "../context/JsonDataContext.jsx";
+import { useJsonDataContext } from "../context/JsonDataContext";
 
 const PageDetail = () => {
-  // const focusRef = useRef(null);
-
-  // useEffect(() => {
-  //   focusRef.current && focusRef.current.focus();
-  // }, []);
-
+ 
   const { id } = useParams();
   const { jsonData } = useJsonDataContext()
 
@@ -61,7 +56,8 @@ const PageDetail = () => {
           <Banner photographerId={photographerId} />
         </section>
         <section>
-          <Filter mediasData={mediasData} updateSortedData={updateSortedData} updateLikes={updateLikes}/>
+        <h2 class="visually-hidden">Les medias du photographe</h2>
+          <Filter mediasData={mediasData} updateSortedData={updateSortedData} updateLikes={updateLikes} newLikes={updatedLikes}/>
           <MediasDisplay
             key={sortedData.map((media) => media.id).join(",")}
             mediasData={sortedData}

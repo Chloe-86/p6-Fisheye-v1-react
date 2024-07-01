@@ -1,7 +1,7 @@
 import "../assets/styles/banner.css";
 import React, { useState } from "react";
 import ContactModal from "./ModalContact";
-// import { useJsonDataContext } from "../jsonDataContext.js";
+import { Card } from "../Templates/Card.jsx";
 
 const Banner = ({ photographerId }) => {
   const [showModal, setShowModal] = useState(false);
@@ -19,14 +19,21 @@ const Banner = ({ photographerId }) => {
       <div
         className="info"
       >
-        <h1>{photographerId.name}</h1>
-        <h2>{`${photographerId.city}, ${photographerId.country}`}</h2>
-        <span>{photographerId.tagline}</span>
+          <Card 
+              name={photographerId.name}
+              city={photographerId.city}
+              country={photographerId.country}
+              tagline={photographerId.tagline}
+              nameTag="h1"
+              cityTag="h2"
+              tagLine="span"
+            />
       </div>
       <button
         tabIndex="0"
         aria-disabled="false"
-        aria-labelledby={`Contact me ${photographerId.name}`}
+        aria-label={`Contact me ${photographerId.name}`}
+        aria-labelledby="contactModalTitle"
         className="contact_button"
         onClick={handleClick}
       >

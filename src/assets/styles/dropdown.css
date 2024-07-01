@@ -30,7 +30,6 @@
   color: #ffffff;
   border-radius: 5px;
   padding: 10px 15px;
-
 }
 
 .dropdown h2 {
@@ -50,16 +49,17 @@
   transform: rotate(180deg); 
   flex-shrink: 0;
 }
+
 .dropdown .description{
   padding: 20px 20px 20px 16px;
 }
+
 @media screen and (max-width: 768px){
   .wrapper-dropdown{
     padding-left: unset;
     padding-right: unset;
   }
 }
-
 
 .active{
   animation: growDown 300ms ease-in-out forwards;
