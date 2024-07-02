@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import arrow from "../assets/img/icons/mini-arrow.svg";
 import "../assets/styles/filter.css";
 
@@ -88,17 +88,17 @@ const Filter = ({ mediasData, updateSortedData, newLikes}) => {
           <div>
             <p>Trier par</p>
           </div>
-          <div aria-expanded={isOpen} role='list' className="ref" onClick={onToggle}>
+          <div aria-expanded={isOpen}  className="ref" onClick={onToggle}>
           <img
-              className="arrow"
+              className={`arrow ${isOpen ? "open" : "closed"}`}
               onKeyDown={(e) => handleKeyEnter(e)}
-              src={arrow}
+              src={arrow }
               alt="fleche"
               tabIndex="0"
               aria-label="cliquez pour ouvrir les choix du filtre"
             />
-            <ul aria-activedescendant={activeFilter}  className={`dropList ${isOpen ? "open" : "closed"}`}>
-              {filters.map((filter, index) => (
+            <ul tabIndex="0" aria-activedescendant={activeFilter} role="listbox" className={`dropList ${isOpen ? "open" : "closed"}`}>
+              {filters.map((filter) => (
                 <li
                   key={filter.id}
                   tabIndex="0"

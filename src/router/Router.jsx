@@ -1,8 +1,8 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import Home from '../pages/Home';
-import PageDetail from '../pages/PageDetail';
-import NotFound from '../components/NotFound';
+
+import { Route, Routes } from 'react-router-dom'; // eslint-disable-line no-unused-vars
+import Home from '../pages/Home'; // eslint-disable-line no-unused-vars
+import PageDetail from '../pages/PageDetail'; // eslint-disable-line no-unused-vars
+import NotFound from '../components/NotFound'; // eslint-disable-line no-unused-vars
 import { useJsonDataContext } from '../context/JsonDataContext';
 
 const Router = () => {

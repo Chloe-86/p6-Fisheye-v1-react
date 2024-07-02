@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "../assets/styles/counter.css";
 import blackLike from "../assets/img/icons/blacklike.svg";
 
@@ -28,7 +28,7 @@ const Counter = ({ photographerId, newLikes }) => {
   return (
     <div className="likeWrapper">
       <article className="card-like">
-        <h5 class="visually-hidden">Compteurd de likes</h5>
+        <h5 className="visually-hidden">Compteurd de likes</h5>
         <div className="likes">
           <p>{totalLikes}</p>
           <img src={blackLike} className="clicklike" alt="coeur" />

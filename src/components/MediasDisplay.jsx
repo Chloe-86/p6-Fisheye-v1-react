@@ -1,7 +1,7 @@
 
-import React, { useState } from "react";
+import { useState } from "react";
 import "../assets/styles/media.css";
-import Lightbox from "../components/lightbox.jsx";
+import Lightbox from "../components/lightbox.jsx"; // eslint-disable-line no-unused-vars
 import heart from "../assets/img/icons/heart.svg";
 
 const MediasDisplay = ({ mediasData, photographerId, updateLikes }) => {
@@ -56,11 +56,11 @@ const MediasDisplay = ({ mediasData, photographerId, updateLikes }) => {
         {mediasData.map((photo, index) => (
           <li className="grid-item" key={photo.id}>
             <article className="media-card-template">
-            <h3 class="visually-hidden">carte</h3>
+            <h3 className="visually-hidden">carte</h3>
               <div className="containerImage">
                 {photo.video ? (
                   <video
-                    src={require(`../assets/img/medias/${photographerId.name}/${photo.video}`)}
+                    src={require(`../assets/img/medias/${photographerId.name}/${photo.video}`)} // eslint-disable-line no-undef
                     controls
                     onClick={() => handleClickLightbox(index)}
                     onKeyDown={(e) => handleKeyEnterLightbox(e, index)}
@@ -70,7 +70,7 @@ const MediasDisplay = ({ mediasData, photographerId, updateLikes }) => {
                     tabIndex="0"
                     className="lightboxImg"
                     aria-label="Appuyer sur entrée pour ouvrir la lightbox"
-                    src={require(`../assets/img/medias/${photographerId.name}/${photo.image}`)}
+                    src={require(`../assets/img/medias/${photographerId.name}/${photo.image}`)} // eslint-disable-line no-undef
                     alt={photo.title}
                     onClick={() => handleClickLightbox(index)}
                     onKeyDown={(e) => handleKeyEnterLightbox(e, index)}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import "../assets/styles/lightbox.css";
 
 const Lightbox = ({ mediasData, show, handleClose, photographerId, initialIndex }) => {
@@ -10,11 +10,11 @@ const Lightbox = ({ mediasData, show, handleClose, photographerId, initialIndex 
   }, [initialIndex]);
 
 
-  const handleNextClick = (e) => {
+  const handleNextClick = () => {
     setCurrentIndex((index) => (index + 1) % mediasData.length);
   };
 
-  const handleBeforeClick = (e) => {
+  const handleBeforeClick = () => {
     setCurrentIndex((index) => (index - 1 + mediasData.length) % mediasData.length);
   };
 
@@ -55,12 +55,12 @@ const Lightbox = ({ mediasData, show, handleClose, photographerId, initialIndex 
 
         {mediasData[currentIndex].image ? (
           <img 
-            src={require(`../assets/img/medias/${photographerId.name}/${mediasData[currentIndex].image}`)}
+            src={require(`../assets/img/medias/${photographerId.name}/${mediasData[currentIndex].image}`)} // eslint-disable-line no-undef
             alt={mediasData[currentIndex].name}
           />
         ) : (
           <video 
-            src={require(`../assets/img/medias/${photographerId.name}/${mediasData[currentIndex].video}`)}
+            src={require(`../assets/img/medias/${photographerId.name}/${mediasData[currentIndex].video}`)} // eslint-disable-line no-undef
             controls
           />
         )}

@@ -1,4 +1,3 @@
-import React from "react";
 
 export const Card = ({ 
   name, 
@@ -9,6 +8,8 @@ export const Card = ({
   cityTag: CityTag = "h3", 
   taglineTag: TaglineTag = "p"
 }) => {
+   // eslint-disable-next-line no-unused-vars
+   const unusedVariables = { NameTag, CityTag, TaglineTag };
   return (
     <>
       <NameTag>{name}</NameTag>

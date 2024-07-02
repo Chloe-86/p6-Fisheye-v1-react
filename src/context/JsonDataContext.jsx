@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
 const JsonDataContext = createContext(null);
 
@@ -9,7 +9,7 @@ export const JsonDataProvider = ({ children }) => {
 
   useEffect(() => {
     // Effectue un fetch pour récupérer les données JSON
-    fetch(`${process.env.PUBLIC_URL}/data/data.json`)
+    fetch(`${process.env.PUBLIC_URL}/data/data.json`) // eslint-disable-line no-undef
       .then(response => response.json())
       .then(data => setJsonData(data))
       .catch(error => console.error('Erreur lors du fetch :', error));

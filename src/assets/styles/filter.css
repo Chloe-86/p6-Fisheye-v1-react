@@ -73,6 +73,6 @@
   transition: ease 1s;
 }
 
-.ref .dropList.open ~ .arrow{
+img.arrow.open{
   transform: rotate(180deg);
 }

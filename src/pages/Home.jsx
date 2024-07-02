@@ -1,11 +1,10 @@
-import React from "react";
-import PhotographerList from "../components/PhotographerList";
-// import Banner from "./Banner";
-import { NavLink } from "react-router-dom";
+
+import PhotographerList from "../components/PhotographerList"; // eslint-disable-line no-unused-vars
+import { NavLink } from "react-router-dom"; // eslint-disable-line no-unused-vars
 import bigLogo from "../assets/img/icons/bigLogo.svg";
 import "../assets/styles/header.css";
 import "../assets/styles/PhotographersList.css"
-import HeaderTemplate from "../Templates/HeaderTemplate";
+import HeaderTemplate from "../Templates/HeaderTemplate"; // eslint-disable-line no-unused-vars
 
 const Home = () => {
   return (
@@ -19,7 +18,7 @@ const Home = () => {
     />
     <main>
     <section className="photographer_section grid-container home">
-    <h2 class="visually-hidden">Liste des photographes</h2>
+    <h2 className="visually-hidden">Liste des photographes</h2>
     <PhotographerList/> 
     </section>
     </main>

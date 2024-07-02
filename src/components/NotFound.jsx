@@ -1,7 +1,7 @@
-import React from 'react';
+
 import "../assets/styles/notfound.css"
-import { NavLink } from 'react-router-dom';
-import HeaderTemplate from '../Templates/HeaderTemplate.jsx';
+import { NavLink } from 'react-router-dom'; // eslint-disable-line no-unused-vars
+import HeaderTemplate from '../Templates/HeaderTemplate.jsx'; // eslint-disable-line no-unused-vars
 import bigLogo from '../assets/img/icons/bigLogo.svg'
 
 const NotFound = () => {

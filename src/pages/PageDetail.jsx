@@ -1,14 +1,14 @@
-import React, { useState} from "react";
+import { useState} from "react";
 import { useParams } from "react-router-dom";
 // import data from "../data/data.json";
-import Banner from "../components/Banner.jsx";
-import MediasDisplay from "../components/MediasDisplay.jsx";
-import HeaderTemplate from "../Templates/HeaderTemplate.jsx";
-import { NavLink } from "react-router-dom";
+import Banner from "../components/Banner.jsx"; // eslint-disable-line no-unused-vars
+import MediasDisplay from "../components/MediasDisplay.jsx"; // eslint-disable-line no-unused-vars
+import HeaderTemplate from "../Templates/HeaderTemplate.jsx"; // eslint-disable-line no-unused-vars
+import { NavLink } from "react-router-dom"; // eslint-disable-line no-unused-vars
 import bigLogo from "../assets/img/icons/bigLogo.svg";
-import Counter from "../components/Counter.jsx";
+import Counter from "../components/Counter.jsx"; // eslint-disable-line no-unused-vars
 import "../assets/styles/counter.css";
-import Filter from "../components/Filter.jsx";
+import Filter from "../components/Filter.jsx"; // eslint-disable-line no-unused-vars
 import { useJsonDataContext } from "../context/JsonDataContext";
 
 const PageDetail = () => {
@@ -56,7 +56,7 @@ const PageDetail = () => {
           <Banner photographerId={photographerId} />
         </section>
         <section>
-        <h2 class="visually-hidden">Les medias du photographe</h2>
+        <h2 className="visually-hidden">Les medias du photographe</h2>
           <Filter mediasData={mediasData} updateSortedData={updateSortedData} updateLikes={updateLikes} newLikes={updatedLikes}/>
           <MediasDisplay
             key={sortedData.map((media) => media.id).join(",")}

@@ -1,12 +1,13 @@
 import "../assets/styles/banner.css";
-import React, { useState } from "react";
-import ContactModal from "./ModalContact";
-import { Card } from "../Templates/Card.jsx";
+import { useState } from "react";
+import ContactModal from "./ModalContact"; // eslint-disable-line no-unused-vars
+import { Card } from "../Templates/Card.jsx"; // eslint-disable-line no-unused-vars
+
 
 const Banner = ({ photographerId }) => {
   const [showModal, setShowModal] = useState(false);
 
-  const handleClick = (media) => {
+  const handleClick = () => {
     setShowModal(true);
   };
 
@@ -47,7 +48,7 @@ const Banner = ({ photographerId }) => {
       <div className={`photo ${photographerId.name}`}>
         <img tabIndex="0"
         aria-label={`Portrait de ${photographerId.name}`}
-          src={require(`../assets/img/photographers/${photographerId.portrait}`)}
+          src={require(`../assets/img/photographers/${photographerId.portrait}`)}//eslint-disable-line no-undef
           alt={photographerId.name}
         />
       </div>
