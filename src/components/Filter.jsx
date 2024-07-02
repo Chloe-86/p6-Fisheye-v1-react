@@ -84,11 +84,11 @@ const Filter = ({ mediasData, updateSortedData, newLikes}) => {
 
   return (
     <>
-        <div className="filter">
+        <div className="filter" role="region">
           <div>
             <p>Trier par</p>
           </div>
-          <div aria-expanded={isOpen}  className="ref" onClick={onToggle}>
+          <div className="ref" onClick={onToggle} >
           <img
               className={`arrow ${isOpen ? "open" : "closed"}`}
               onKeyDown={(e) => handleKeyEnter(e)}
@@ -100,6 +100,7 @@ const Filter = ({ mediasData, updateSortedData, newLikes}) => {
             <ul tabIndex="0" aria-activedescendant={activeFilter} role="listbox" className={`dropList ${isOpen ? "open" : "closed"}`}>
               {filters.map((filter) => (
                 <li
+               
                   key={filter.id}
                   tabIndex="0"
                   data-active={filter.id}
